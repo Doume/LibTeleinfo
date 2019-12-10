@@ -47,6 +47,9 @@
 //            Note : Nécessité de flasher le SPIFFS pour pouvoir configurer le remote syslog
 //          Affichage des options de compilation sélectionnées dans l'onglet 'Système'
 //            et au début du Debug + syslog éventuels
+//
+//        Version 1.0.7 (10/12/2019) Use new WiFi library feature
+//           Reconnect WiFi automatically after incident
 // **********************************************************************************
 // Include Arduino header
 #include <Arduino.h>
@@ -739,7 +742,12 @@ int WifiHandleConn(boolean setup = false)
       DebugF("IP address   : "); Debugln(WiFi.softAPIP());
       DebugF("MAC address  : "); Debugln(WiFi.softAPmacAddress());
     }
-
+    // Version 1.0.7 : Use auto reconnect Wifi
+    WiFi.setAutoConnect(true);
+    WiFi.setAutoReconnect(true);
+    DebuglnF("auto-reconnect armed !");
+      
+	  
     // Set OTA parameters
     ArduinoOTA.setPort(config.ota_port);
     ArduinoOTA.setHostname(config.host);
