@@ -90,7 +90,7 @@ extern "C" {
 
 #endif  //DEBUG
 
-#define WIFINFO_VERSION "1.0.6"
+#define WIFINFO_VERSION "1.0.7"
 
 #ifdef SYSLOG
 #define MACRO
